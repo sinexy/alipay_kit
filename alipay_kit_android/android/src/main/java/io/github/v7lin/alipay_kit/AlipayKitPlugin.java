@@ -9,7 +9,6 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 
 import com.alipay.sdk.app.AuthTask;
-import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 
 import java.lang.ref.WeakReference;
@@ -86,18 +85,6 @@ public class AlipayKitPlugin implements FlutterPlugin, ActivityAware, MethodCall
             } catch (PackageManager.NameNotFoundException ignore) {
             }
             result.success(isInstalled);
-        } else if ("setEnv".equals(call.method)) {
-            final int env = call.argument("env");
-            switch (env) {
-                case 1:
-                    EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
-                    break;
-                case 0:
-                default:
-                    EnvUtils.setEnv(EnvUtils.EnvEnum.ONLINE);
-                    break;
-            }
-            result.success(null);
         } else if ("pay".equals(call.method)) {
             final String orderInfo = call.argument("orderInfo");
             final boolean isShowLoading = call.argument("isShowLoading");

@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:alipay_kit/src/alipay_kit_platform_interface.dart';
-import 'package:alipay_kit/src/constant.dart';
-import 'package:alipay_kit/src/model/resp.dart';
+import 'package:alipay_kit/src/model/alipay_resp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -25,9 +23,11 @@ class MethodChannelAlipayKit extends AlipayKitPlatform {
       case 'onPayResp':
         _payRespStreamController.add(AlipayResp.fromJson(
             (call.arguments as Map<dynamic, dynamic>).cast<String, dynamic>()));
+        break;
       case 'onAuthResp':
         _authRespStreamController.add(AlipayResp.fromJson(
             (call.arguments as Map<dynamic, dynamic>).cast<String, dynamic>()));
+        break;
     }
   }
 
@@ -47,29 +47,14 @@ class MethodChannelAlipayKit extends AlipayKitPlatform {
   }
 
   @override
-  Future<void> setEnv({
-    required AlipayEnv env,
-  }) {
-    assert(Platform.isAndroid);
-    return methodChannel.invokeMethod<void>(
-      'setEnv',
-      <String, dynamic>{
-        'env': env.index,
-      },
-    );
-  }
-
-  @override
   Future<void> pay({
     required String orderInfo,
-    bool dynamicLaunch = false,
     bool isShowLoading = true,
   }) {
     return methodChannel.invokeMethod<void>(
       'pay',
       <String, dynamic>{
         'orderInfo': orderInfo,
-        'dynamicLaunch': dynamicLaunch,
         'isShowLoading': isShowLoading,
       },
     );

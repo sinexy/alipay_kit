@@ -1,18 +1,3 @@
-## 6.0.0
-
-* Flutter 3.10.2 && Dart 3.0
-
-## 5.0.1
-
-* Android: setEnv
-
-## 5.0.0
-
-* break change
-* Android: 提高新手配置友好度，不在需要手动配置
-* iOS: 提高新手配置友好度，不在需要手动配置
-* Flutter: 提高类名辨识，所有类类名前缀为 "Alipay"
-
 ## 4.0.0
 
 * 升级 Flutter 3.0

@@ -1,13 +1,7 @@
 import 'package:alipay_kit/src/alipay_kit_method_channel.dart';
-import 'package:alipay_kit/src/constant.dart';
-import 'package:alipay_kit/src/model/resp.dart';
+import 'package:alipay_kit/src/model/alipay_resp.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-/// 支付宝
-///
-/// * 默认不包含iOS支付
-///   添加 alipay_kit_ios 依赖，可切换为不包含支付。
-/// * 不含「iOS 支付」调用会抛出 [MissingPluginException]。
 abstract class AlipayKitPlatform extends PlatformInterface {
   /// Constructs a AlipayKitPlatform.
   AlipayKitPlatform() : super(token: _token);
@@ -44,18 +38,9 @@ abstract class AlipayKitPlatform extends PlatformInterface {
     throw UnimplementedError('isInstalled() has not been implemented.');
   }
 
-  /// 支付环境
-  Future<void> setEnv({
-    required AlipayEnv env,
-  }) {
-    throw UnimplementedError(
-        'setEnv({required env}) has not been implemented.');
-  }
-
   /// 支付
   Future<void> pay({
     required String orderInfo,
-    bool dynamicLaunch = false, // iOS 是否使用动态配置策略跳转支付宝支付
     bool isShowLoading = true,
   }) {
     throw UnimplementedError(

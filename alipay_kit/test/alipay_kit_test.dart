@@ -1,7 +1,7 @@
+import 'package:alipay_kit/src/alipay.dart';
 import 'package:alipay_kit/src/alipay_kit_method_channel.dart';
 import 'package:alipay_kit/src/alipay_kit_platform_interface.dart';
-import 'package:alipay_kit/src/constant.dart';
-import 'package:alipay_kit/src/model/resp.dart';
+import 'package:alipay_kit/src/model/alipay_resp.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
@@ -24,16 +24,7 @@ class MockAlipayKitPlatform
   }
 
   @override
-  Future<void> setEnv({required AlipayEnv env}) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> pay({
-    required String orderInfo,
-    bool dynamicLaunch = false,
-    bool isShowLoading = true,
-  }) {
+  Future<void> pay({required String orderInfo, bool isShowLoading = true}) {
     throw UnimplementedError();
   }
 
@@ -57,6 +48,6 @@ void main() {
     final MockAlipayKitPlatform fakePlatform = MockAlipayKitPlatform();
     AlipayKitPlatform.instance = fakePlatform;
 
-    expect(await AlipayKitPlatform.instance.isInstalled(), true);
+    expect(await Alipay.instance.isInstalled(), true);
   });
 }
